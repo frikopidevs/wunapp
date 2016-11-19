@@ -1,0 +1,17 @@
+<ion-view id="login-screen" >
+	<ion-content id="login-screen">
+		<p>{{lat}}</p>
+		<p>{{long}}</p>
+		<p>{{dist}}</p>
+		 <ion-slides  options="options" slider="data.slider">
+		    <ion-slide-page ng-repeat="x in agentlocations">
+		      <div ng-if="calculateDistance(lat,long,x.latitude,x.longitude) < minimumdistance" class="box blue" style="height: 100%;background: red">
+		      <h1>{{x.latitude}}</h1>
+		      <h1>{{x.longitude}}</h1>
+		      <h1>{{calculateDistance(lat,long,x.latitude,x.longitude)}}km</h1>
+		      </div>
+		    </ion-slide-page>
+	    </ion-slides>
+
+	</ion-content>
+</ion-view>

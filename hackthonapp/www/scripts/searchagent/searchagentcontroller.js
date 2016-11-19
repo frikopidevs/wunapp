@@ -1,0 +1,87 @@
+(function(){
+	'use strict';
+angular.module('searchagent.module')
+	   .controller('searchagentCtrl',function($scope,$http,$state,userService,$cordovaGeolocation){
+      	
+      	$scope.minimumdistance = 1;
+
+	   	var posOptions = {timeout: 10000, enableHighAccuracy: false};
+	   	$cordovaGeolocation
+	    .getCurrentPosition(posOptions)
+	    .then(function (position) {
+	      $scope.lat  = position.coords.latitude
+	      $scope.long = position.coords.longitude
+	     // $scope.dist = calculateDistance($scope.lat, $scope.long, 7.103405, 125.643631);
+	    }, function(err) {
+	      // error
+	    });
+
+
+
+		$scope.calculateDistance = function(lat1, lon1, lat2, lon2) {
+			var radlat1 = Math.PI * lat1/180;
+			var radlat2 = Math.PI * lat2/180;
+			var radlon1 = Math.PI * lon1/180;
+			var radlon2 = Math.PI * lon2/180;
+			var theta = lon1-lon2;
+			var radtheta = Math.PI * theta / 180;
+			var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+			dist = Math.acos(dist);
+			dist = dist * 180 / Math.PI;
+			dist = dist * 60 * 1.1515;
+			dist = dist * 1.609344;
+			return dist.toFixed(3);
+		}
+		
+		
+		
+	 	$http.get("http://localhost/hackathon/findagent.php")
+          .then(function successCallback(response) {
+            $scope.agentlocations = response.data;
+             console.log($scope.agentlocations );
+          },function errorCallback(response){
+            console.log("Error");
+          });	
+
+        $scope.options = {
+		  loop: false,
+		  effect: 'fade',
+		  speed: 500,
+		}
+
+		$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+		  // data.slider is the instance of Swiper
+		  $scope.slider = data.slider;
+		});
+
+		$scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+		  console.log('Slide change is beginning');
+		});
+
+		$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+		  // note: the indexes are 0-based
+		  $scope.activeIndex = data.slider.activeIndex;
+		  $scope.previousIndex = data.slider.previousIndex;
+		});
+
+
+
+	    /* var watchOptions = {
+		    timeout : 3000,
+		    enableHighAccuracy: false // may cause errors if true
+		  };
+
+		  var watch = $cordovaGeolocation.watchPosition(watchOptions);
+		  watch.then(
+		    null,
+		    function(err) {
+		      // error
+		    },
+		    function(position) {
+		      $scope.lat1  = position.coords.latitude
+		      $scope.long1 = position.coords.longitude
+		  });*/
+
+
+	   });
+})()
