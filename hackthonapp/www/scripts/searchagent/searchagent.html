@@ -1,17 +1,37 @@
+
+<div class="bar bar-header bar-assertive">
+		 <!--  <h1 class="title"></h1> -->
+		 <button class="button button-small button-light" style="background: none;color:white" ng-click="goHome()">
+		  Back
+		</button>
+		</div>
 <ion-view id="login-screen" >
-	<ion-content id="login-screen">
-		<p>{{lat}}</p>
-		<p>{{long}}</p>
-		<p>{{dist}}</p>
+	<ion-content id="login-screen" class="has-header">
+		<!-- <p>{{lat}}</p>
+		<p>{{long}}</p> -->
+
+		 <div id="map" data-tap-disabled="true" style="height:50%"></div>
+
 		 <ion-slides  options="options" slider="data.slider">
-		    <ion-slide-page ng-repeat="x in agentlocations">
-		      <div ng-if="calculateDistance(lat,long,x.latitude,x.longitude) < minimumdistance" class="box blue" style="height: 100%;background: red">
-		      <h1>{{x.latitude}}</h1>
+		    <ion-slide-page ng-repeat="x in agentlocations" style="background:white">
+		      <div class="box blue"  align="center" >
+
+		      <i>{{calculateDistance(lat,long,x.latitude,x.longitude)}} km away</i>
+		      <h3>{{x.firstname}} {{x.lastname}}</h3>
+
+		      <button class="button button-assertive">
+				  Send Message
+			  </button>
+			 <!--  <button class="button button-assertive" ng-click="selected = 'ok'" ng-click="toggle()" value="Toggle" >
+				  Check on Google map
+			  </button> -->
+		     <!--  <h1>{{x.latitude}}</h1>
 		      <h1>{{x.longitude}}</h1>
-		      <h1>{{calculateDistance(lat,long,x.latitude,x.longitude)}}km</h1>
-		      </div>
+		      <h1>{{calculateDistance(lat,long,x.latitude,x.longitude)}}km</h1> -->
+		     
 		    </ion-slide-page>
 	    </ion-slides>
-
 	</ion-content>
+
 </ion-view>
+

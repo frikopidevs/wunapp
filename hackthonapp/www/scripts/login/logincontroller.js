@@ -10,7 +10,7 @@ angular.module('login.module')
       }
 
       $scope.login = function(){
-      //  $state.go('home');
+        //$state.go('home');
          $http.get("http://localhost/hackathon/loginauth.php?username="+$scope.data.username+"&&password="+$scope.data.password)
                   .then(function successCallback(response) {
                     // console.log(response.data);
@@ -18,9 +18,13 @@ angular.module('login.module')
                     
                     if ($scope.result == "Invalid"){
                        console.log("Please login");
-                    }else{
+                    }
+                    else if($scope.result.role == "user"){
                       userService.adduserdetails(response.data);
                        $state.go('home');
+                    }
+                    else if($scope.result.role == "agent"){
+                      $state.go('agent');
                     }
 
                     // console.log($scope.result);

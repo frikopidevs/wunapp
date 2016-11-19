@@ -1,12 +1,22 @@
 (function(){
 	'use strict';
 angular.module('searchagent.module')
-	   .controller('searchagentCtrl',function($scope,$http,$state,userService,$cordovaGeolocation){
+	   .controller('searchagentCtrl',function($scope,$http,$state,userService,$cordovaGeolocation,$ionicModal){
       	
       	$scope.minimumdistance = 1;
 
+      	$http.get("http://localhost/hackathon/findagent.php")
+          .then(function successCallback(response) {
+            $scope.agentlocations = response.data;
+             console.log($scope.agentlocations );
+             $scope.resultmap = true;
+          },function errorCallback(response){
+            console.log("Error");
+          });	
+
+
 	   	var posOptions = {timeout: 10000, enableHighAccuracy: false};
-	   	$cordovaGeolocation
+	   	/*$cordovaGeolocation
 	    .getCurrentPosition(posOptions)
 	    .then(function (position) {
 	      $scope.lat  = position.coords.latitude
@@ -14,10 +24,71 @@ angular.module('searchagent.module')
 	     // $scope.dist = calculateDistance($scope.lat, $scope.long, 7.103405, 125.643631);
 	    }, function(err) {
 	      // error
-	    });
+	    });*/
+
+	     
+	     $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position){
+ 			$scope.lat  = position.coords.latitude
+	        $scope.long = position.coords.longitude
+		    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		    var mapOptions = {
+		      center: latLng,
+		      zoom: 15,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+
+		    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+
+		    /*if($scope.resultmap == true){
+		    	for(var x=0;x<$scope.agentlocations.length;x++){
+		    		var latLng = new google.maps.LatLng($scope.agentlocations.latitude, $scope.agentlocations.longitude);
+			    	var marker = new google.maps.Marker({
+			          position: latLng,
+			          map: $scope.map,
+			          title: 'Hello World!'
+			        });
+		    	}
+		    } */ 
+
+		    /*for(var x=0;x<$scope.agentlocations.length;x++){
+
+		    }*/
+		    
+/*
+ 		  for(var x = 0;x<$scope.agentlocations.length;x++){
+ 		  	var Latlng = new google.maps.Latlng($scope.agentlocations.latitude, $scope.agentlocations.longitude);
+ 		  	addtomap(Latlng);
+ 		  }
+
+ 		  function addtomap(Latlng){
+ 		  	var marker = google.maps.Marker({
+	          position:Latlng,
+	          map: $scope.map,
+	          title: 'Hello World!'
+	        });
+ 		  }*/
+
+
+ 		  
+
+    	 /* var marker = new google.maps.Marker({
+	          position: latLng,
+	          map: $scope.map,
+	          title: 'Hello World!'
+	        });*/
+		    
+
+		  }, function(error){
+		    console.log("Could not get location");
+		  });
 
 
 
+
+	    $scope.goHome = function(){
+	    	$state.go('home');
+	    }
 		$scope.calculateDistance = function(lat1, lon1, lat2, lon2) {
 			var radlat1 = Math.PI * lat1/180;
 			var radlat2 = Math.PI * lat2/180;
@@ -33,15 +104,7 @@ angular.module('searchagent.module')
 			return dist.toFixed(3);
 		}
 		
-		
-		
-	 	$http.get("http://localhost/hackathon/findagent.php")
-          .then(function successCallback(response) {
-            $scope.agentlocations = response.data;
-             console.log($scope.agentlocations );
-          },function errorCallback(response){
-            console.log("Error");
-          });	
+	 	
 
         $scope.options = {
 		  loop: false,

@@ -9,6 +9,7 @@ var app = angular.module('starter', ['ionic',
   'registeragent.module',
   'home.module',
   'searchagent.module',
+  'agent.module',
   'ngCordova'])
 
 app.run(function($ionicPlatform) {
