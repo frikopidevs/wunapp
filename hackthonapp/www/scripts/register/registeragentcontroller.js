@@ -58,7 +58,7 @@ angular.module('registeragent.module')
         else{ 
         $http({
             method: 'POST',
-            url: "http://localhost/hackathon/registeragent.php",
+            url: "http://pldthackathon.kimseanpusod.com/api/registeragent.php",
             data: {username:$scope.data.username,
                  password:$scope.data.password,
                  role:"agent",

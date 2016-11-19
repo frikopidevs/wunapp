@@ -4,25 +4,28 @@
 		 <button class="button button-small button-light" style="background: none;color:white" ng-click="goHome()">
 		  Back
 		</button>
-</div>
+		</div>
 <ion-view id="login-screen" >
 	<ion-content id="login-screen" class="has-header">
 		<!-- <p>{{lat}}</p>
 		<p>{{long}}</p> -->
 
-		 <div id="map" data-tap-disabled="true" style="height:50%"></div>
 
-		 <ion-slides  options="options" slider="data.slider">
-		    <ion-slide-page ng-repeat="x in agentlocations" style="background:white">
-		      <div class="box blue"  align="center" >
+
+		 <div id="map" data-tap-disabled="true" style="height:230px"></div>
+		 <button class="button button-small button-assertive" ng-click="sendmessage()">
+				  Send Message
+			  </button>
+		 <ion-slides  options="options" slider="data.slider" style="height:300px">
+		    <ion-slide-page ng-repeat="x in agentlocations" align="center" style="background:white">
 
 		      <i>{{calculateDistance(lat,long,x.latitude,x.longitude)}} km away</i>
 		      <h3>{{x.firstname}} {{x.lastname}}</h3>
-		      <label>{{x.contact}}</label><br>
-		      <button class="button button-assertive">
+
+		      <button class="button button-small button-assertive" ng-click="sendmessage()">
 				  Send Message
 			  </button>
-			 <!--  <button class="button button-assertive" ng-click="selected = 'ok'" ng-click="toggle()" value="Toggle" >
+			  <!-- <button class="button button-small button-assertive" ng-click="selected = 'ok'" ng-click="toggle()" value="Toggle" >
 				  Check on Google map
 			  </button> -->
 		     <!--  <h1>{{x.latitude}}</h1>

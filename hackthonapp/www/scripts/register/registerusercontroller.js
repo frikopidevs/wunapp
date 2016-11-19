@@ -50,7 +50,7 @@ angular.module('registeruser.module')
      		else{	
 	     	$http({
 				    method: 'POST',
-				    url: "http://localhost/hackathon/register.php",
+				    url: "http://pldthackathon.kimseanpusod.com/api/register.php",
 				    data: {username:$scope.data.username,
 				    	   password:$scope.data.password,
 				    	   role:"user",

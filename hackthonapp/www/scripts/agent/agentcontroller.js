@@ -10,13 +10,13 @@ angular.module('agent.module')
 		  }, function(error){
 		    console.log("Could not get location");
 		  });
-
+    
 	   	$scope.broadcast = function(){
 	   		$state.go('broadcast');
 	   		console.log($scope.lat);
 	     	$http({
 				    method: 'POST',
-				    url: "http://localhost/hackathon/agentlocation.php",
+				    url: "http://pldthackathon.kimseanpusod.com/api/agentlocation.php",
 				    data: {id:userService.returnuserdetailsId(),
 				    	   latitude:$scope.lat,
 				    	   longitude:$scope.long},

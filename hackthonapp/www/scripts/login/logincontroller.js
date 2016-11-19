@@ -11,7 +11,7 @@ angular.module('login.module')
 
       $scope.login = function(){
         //$state.go('home');
-         $http.get("http://localhost/hackathon/loginauth.php?username="+$scope.data.username+"&&password="+$scope.data.password)
+         $http.get("http://pldthackathon.kimseanpusod.com/api/loginauth.php?username="+$scope.data.username+"&&password="+$scope.data.password)
                   .then(function successCallback(response) {
                     // console.log(response.data);
                     $scope.result = response.data;

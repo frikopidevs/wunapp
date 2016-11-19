@@ -7,7 +7,7 @@ angular.module('broadcast.module')
 	   	$scope.cancelbroadcast = function(){
 	   		$http({
 				    method: 'POST',
-				    url: "http://localhost/hackathon/cancelbroadcast.php",
+				    url: "http://pldthackathon.kimseanpusod.com/api/cancelbroadcast.php",
 				    data: {id:userService.returnuserdetailsId()},
 				    headers: {
 				    	//'Content-Type': 'application/json'
