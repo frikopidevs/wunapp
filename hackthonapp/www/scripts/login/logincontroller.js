@@ -24,6 +24,7 @@ angular.module('login.module')
                        $state.go('home');
                     }
                     else if($scope.result.role == "agent"){
+                      userService.adduserdetails(response.data);
                       $state.go('agent');
                     }
 

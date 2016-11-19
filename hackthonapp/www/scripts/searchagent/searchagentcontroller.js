@@ -36,49 +36,7 @@ angular.module('searchagent.module')
 		      zoom: 15,
 		      mapTypeId: google.maps.MapTypeId.ROADMAP
 		    };
-
 		    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-
-		    /*if($scope.resultmap == true){
-		    	for(var x=0;x<$scope.agentlocations.length;x++){
-		    		var latLng = new google.maps.LatLng($scope.agentlocations.latitude, $scope.agentlocations.longitude);
-			    	var marker = new google.maps.Marker({
-			          position: latLng,
-			          map: $scope.map,
-			          title: 'Hello World!'
-			        });
-		    	}
-		    } */ 
-
-		    /*for(var x=0;x<$scope.agentlocations.length;x++){
-
-		    }*/
-		    
-/*
- 		  for(var x = 0;x<$scope.agentlocations.length;x++){
- 		  	var Latlng = new google.maps.Latlng($scope.agentlocations.latitude, $scope.agentlocations.longitude);
- 		  	addtomap(Latlng);
- 		  }
-
- 		  function addtomap(Latlng){
- 		  	var marker = google.maps.Marker({
-	          position:Latlng,
-	          map: $scope.map,
-	          title: 'Hello World!'
-	        });
- 		  }*/
-
-
- 		  
-
-    	 /* var marker = new google.maps.Marker({
-	          position: latLng,
-	          map: $scope.map,
-	          title: 'Hello World!'
-	        });*/
-		    
-
 		  }, function(error){
 		    console.log("Could not get location");
 		  });
