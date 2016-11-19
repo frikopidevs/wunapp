@@ -1,19 +1,21 @@
 (function(){
 	'use strict';
 angular.module('searchagent.module')
-	   .controller('searchagentCtrl',function($scope,$http,$state,userService,$cordovaGeolocation){
+	   .controller('searchagentCtrl',function($scope,$http,$state,userService,$cordovaGeolocation,$cordovaSms){
       	
       	$scope.minimumdistance = 1;
 
       	$http.get("http://pldthackathon.kimseanpusod.com/api/findagent.php")
           .then(function successCallback(response) {
             $scope.agentlocations = response.data;
-             console.log($scope.agentlocations );
+             console.log($scope.agentlocations);
              $scope.resultmap = true;
           },function errorCallback(response){
             console.log("Error");
           });
-
+        
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        
         $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position){
  			$scope.lat  = position.coords.latitude
 	        $scope.long = position.coords.longitude
@@ -26,16 +28,17 @@ angular.module('searchagent.module')
 
 		    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-		    for(var x =0;x<$scope.agentlocations.length;x++){
+		    if($scope.agentlocations){
+		    	for(var x =0;x<$scope.agentlocations.length;x++){
 		    	var myLatlng = new google.maps.LatLng($scope.agentlocations[x]['latitude'] ,$scope.agentlocations[x]['longitude']);
 			    var marker = new google.maps.Marker({
 			    	map: $scope.map,
 				    position: myLatlng,
-				    title:"Hello World!"
+				    title:$scope.agentlocations[x]['firstname']
 				});
+		   	   }
 		    }
-	    	
-
+		    
 		  }, function(error){
 		    console.log("Could not get location");
 		  });
@@ -47,10 +50,29 @@ angular.module('searchagent.module')
         	$scope.map.panTo(new google.maps.LatLng($scope.agentlocations[index]['latitude'],$scope.agentlocations[index]['longitude']));
         }
 
-	   	var posOptions = {timeout: 10000, enableHighAccuracy: false};
+	   	
 
-	     $scope.sendmessage = function(){
-	     	$http({
+	     $scope.sendmessage = function(phonenumber){
+
+	     	 var options = {
+			    replaceLineBreaks: false, // true to replace \n by a new line, false by default
+			    android: {
+			      intent: 'INTENT' // send SMS with the native android SMS messaging
+			        //intent: '' // send SMS without open any other app
+			        //intent: 'INTENT' // send SMS inside a default SMS app
+			    }
+			  };
+
+
+	     	 $cordovaSms
+		      .send(phonenumber, '', options)
+		      .then(function() {
+		        // Success! SMS was sent
+		      }, function(error) {
+		        // An error occurred
+		      });
+
+	     	/*$http({
 				    method: 'POST',
 				    url: "https://post.chikka.com/smsapi/request",
 				    data: {message_type:"SEND",
@@ -66,7 +88,7 @@ angular.module('searchagent.module')
 				        'Content-Type': 'application/x-www-form-urlencoded'
 				       // 'Content-type':'application/json; charset=utf-8'
 				    }
-				});
+				});*/
 	     }
 	     
 	    $scope.goHome = function(){

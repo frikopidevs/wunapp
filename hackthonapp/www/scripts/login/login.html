@@ -1,20 +1,27 @@
 <ion-view id="login-screen" >
-	<ion-content id="login-screen">
-		<div class="list list-inset">
-		  <label class="item item-input">
-		    <input type="text" placeholder="Username" ng-model="data.username">
-		  </label>
-		  <label class="item item-input">
-		    <input type="password" placeholder="Password" ng-model="data.password">
-		  </label>
+	<ion-content id="login-screen" style="background:#d90429;padding-top: 45%" align="center">
+		<div class="list list-inset" style="background:#d90429">
+
+			<div class="list" >
+			  <label class="item item-input">
+			    <span class="input-label"  style="max-width:50px"><i class = "icon icon ion-person"></i></span>
+			    <input type="text" placeholder="Username" ng-model="data.username">
+			  </label>
+			  <label class="item item-input" style="margin-top: 20px">
+			    <span class="input-label" style="max-width:50px"><i class = "icon icon ion-locked"></i></span>
+			    <input type="password" placeholder="Password" ng-model="data.password">
+			  </label>
+			</div>
+
 		</div>
-		<button class="button button-block button-assertive" ng-click="login()">
+		<button style="background:#d90429;border-radius: 3px;width: 80%;padding:10px;color:white;border:1px solid white" ng-click="login()">Log in</button>
+		<!-- <button class="button button-block button-assertive" ng-click="login()">
 		  Login
-		</button>
-		<button class="button button-small button-stable" ng-click="goUserRegisterPage()">
+		</button> --><br>
+		<button class="button button-small" style="background:#d90429;color:white;border:1px solid white;margin-top: 10px;" ng-click="goUserRegisterPage()">
 		  Register as User
 		</button>
-		<button class="button button-small button-stable" ng-click="goAgentRegisterPage()">
+		<button class="button button-small" style="background:#d90429;color:white;border:1px solid white;margin-top: 10px;" ng-click="goAgentRegisterPage()">
 		  Register as Agent
 		</button>
 	</ion-content>
