@@ -74,21 +74,27 @@ angular.module('searchagent.module')
 
 	     	/*$http({
 				    method: 'POST',
-				    url: "https://post.chikka.com/smsapi/request",
-				    data: {message_type:"SEND",
-				    	   mobile_number:"63922317527",
-				    	   shortcode:"29290 504547",
-				    	   message_id:"12763172638176",
-				    	   message:"This is a test message from api chikka",
-				    	   client_id:"4b29e355f891bd9d85b3c6fabe478d64720b86e4c287a5d0a553ec1fe8b8e2e0",
-				    	   secret_key:"fc049961a9785986ea1c0d138f308499ba9e574353a8fd4e81b857d874d343ac"
+				    url: 'https://post.chikka.com/smsapi/request',
+				    data: {message_type:'SEND',
+				    	   mobile_number:'63922317527',
+				    	   shortcode:'29290504547',
+				    	   message_id:'12763172638176',
+				    	   message:'This is a test message from api chikka',
+				    	   client_id:'4b29e355f891bd9d85b3c6fabe478d64720b86e4c287a5d0a553ec1fe8b8e2e0',
+				    	   secret_key:'fc049961a9785986ea1c0d138f308499ba9e574353a8fd4e81b857d874d343ac'
 				    	  },
 				    headers: {
 				    	// 'Content-Type': 'application/json'
-				        'Content-Type': 'application/x-www-form-urlencoded'
-				       // 'Content-type':'application/json; charset=utf-8'
+				    	//'Access-Control-Allow-Origin':'*'
+				    	'Content-Type': 'application/x-www-form-urlencoded'
+				        // 'Content-type':'application/json; charset=utf-8'
 				    }
-				});*/
+				}).then(function successCallback(response) {
+                    console.log(response);
+                  },function errorCallback(response){
+                    console.log(response);
+                  });*/
+
 	     }
 	     
 	    $scope.goHome = function(){
