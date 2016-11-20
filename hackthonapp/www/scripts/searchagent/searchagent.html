@@ -15,11 +15,11 @@
 		 <div id="map" data-tap-disabled="true" style="height:230px"></div>
 		 <ion-slides  options="options" slider="data.slider" style="height:300px">
 		    <ion-slide-page ng-repeat="x in agentlocations" align="center" style="background:white">
-
+		      <br><br>
 		      <p>{{calculateDistance(lat,long,x.latitude,x.longitude)}} km away</p>
 		      <h3>{{x.firstname}} {{x.lastname}}</h3>
 		      <p>{{x.contact}}</p><br>
-		      <button class="button button-small button-assertive" ng-click="sendmessage({{x.contact}})">
+		      <button class="button button-large button-assertive" ng-click="sendmessage({{x.contact}})">
 				  Text Now
 			  </button>
 			  <!-- <button class="button button-small button-assertive" ng-click="selected = 'ok'" ng-click="toggle()" value="Toggle" >

@@ -1,13 +1,29 @@
+ <script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view align="center">
+      <div align="left">
+      <button class="button button-small button-stable" style="background: none;margin-left: 10px;margin-top: 10px" ng-click="goback()">
+		  Back
+		</button>	
+      </div>
+      <br>
+        <img src="img/plan_offers_2.png">
+      </ion-modal-view>
+</script>
+
 <ion-view id="login-screen" >
 	<ion-content id="login-screen" align="center" style="padding-top: 30%">
 
 	   <button class="button button-stable" style="width:80%;padding-top: 20px;padding-bottom: 20px" ng-click="searchagent()">
-		 <i class = "icon icon ion-radio-waves "></i> Find Agent
+		 <i class = "icon icon ion-radio-waves "></i> Find Agent | Technician
+		</button><br><br>
+
+		<button class="button button-stable" style="width:80%;padding-top: 20px;padding-bottom: 20px" ng-click="viewpromo()">
+		 <i class = "icon icon ion-star "></i> Plan Offers
 		</button><br><br>
 
 		<button class="button button-stable" style="width:80%;padding-top: 20px;padding-bottom: 20px" ng-click="logout()">
 		 <i class = "icon icon ion-reply "></i> Logout
-		</button>
+		</button><br><br>
 		<!-- <button class="button button-assertive">
 		  Report Problem
 		</button> -->

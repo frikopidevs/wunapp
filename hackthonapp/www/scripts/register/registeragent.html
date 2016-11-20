@@ -1,5 +1,8 @@
 
-<ion-view id="registeragent-screen" style="background:#d90429" align="center">
+<ion-view id="registeragent-screen" style="background:#d90429">
+<button class="button button-small button-light" style="background: none;color:white;margin-left: 10px;margin-top: 10px" ng-click="goback()">
+		  Back
+		</button>
 	<div class="list list-inset" style="background:#d90429">
 		  <label class="item item-input" style="margin-top: 5px">
 		    <input type="text" placeholder="First Name" ng-model="data.firstname">
@@ -23,6 +26,8 @@
 		    <input type="text" placeholder="Code" ng-model="data.code">
 		  </label>
 	</div>
-
+	<div align="center">	
 	<button style="background:#d90429;border-radius: 3px;width: 80%;padding:10px;color:white;border:1px solid white" ng-click="registeragent()">Register as Agent</button>
+	</div>
+
 </ion-view>

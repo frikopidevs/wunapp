@@ -22,6 +22,10 @@ angular.module('registeruser.module')
 	     });
 	   };
 
+	    $scope.goback = function(){
+	      $state.go('login');
+	     }
+	     
 	    $scope.showAlertPassword = function() {
 	     var alertPopup = $ionicPopup.alert({
 	       template: 'Please fill in all the fields'

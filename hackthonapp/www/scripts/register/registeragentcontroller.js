@@ -31,7 +31,9 @@ angular.module('registeragent.module')
        });
      };
 
-
+     $scope.goback = function(){
+      $state.go('login');
+     }
      $scope.showAlertSuccess = function() {
        var alertPopup = $ionicPopup.alert({
          title: 'Registration Successful',

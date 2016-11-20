@@ -28,6 +28,13 @@ angular.module('searchagent.module')
 
 		    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+		    var marker = new google.maps.Marker({
+			    	map: $scope.map,
+				    position: latLng,
+				    icon:'img/arrow.gif',
+				    title:"You are here"
+				});
+
 		    if($scope.agentlocations){
 		    	for(var x =0;x<$scope.agentlocations.length;x++){
 		    	var myLatlng = new google.maps.LatLng($scope.agentlocations[x]['latitude'] ,$scope.agentlocations[x]['longitude']);
