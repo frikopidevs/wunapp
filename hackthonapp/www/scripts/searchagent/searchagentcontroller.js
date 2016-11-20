@@ -15,7 +15,7 @@ angular.module('searchagent.module')
           });
         
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
-        
+
         $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position){
  			$scope.lat  = position.coords.latitude
 	        $scope.long = position.coords.longitude

@@ -4,3 +4,7 @@
 #map {
     width: 100%;
 }
+
+.swiper-pagination {
+    display:none !important;
+}
